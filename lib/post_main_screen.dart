@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sutt_task_2/traindetails.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 Map mapResponse = {};
 List listResponse = [];
@@ -19,7 +19,11 @@ class TrainData extends StatefulWidget {
 }
 
 class _TrainDataState extends State<TrainData> {
+
+  bool isLoading = false;
+
   Future<dynamic> apiCall1() async {
+    isLoading = true;
     Map<String, dynamic> mapdata = {
       "fromStationCode" : widget.journeyStart,
       "toStationCode" : widget.journeyEnd,
@@ -27,13 +31,14 @@ class _TrainDataState extends State<TrainData> {
     Uri uri = Uri.https('irctc1.p.rapidapi.com', '/api/v2/trainBetweenStations', mapdata);
     http.Response response;
     response = await http.get(uri, headers: {
-      "X-RapidAPI-Key": "fe0940c9admshd3dc04790844a4bp1fb8f9jsn801daefb401a",
+      "X-RapidAPI-Key": "fea99748bbmshf72995184f86bc5p1a1e2ejsn921c76484118",
       "X-RapidAPI-Host": "irctc1.p.rapidapi.com",});
     if (response.statusCode == 200) {
       setState(() {
         mapResponse = json.decode(response.body);
         listResponse = mapResponse['data'];
         print(listResponse);
+        isLoading=false;
       });
     }
   }
@@ -46,9 +51,17 @@ class _TrainDataState extends State<TrainData> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.yellow,
+  Widget build(BuildContext context) => isLoading
+      ? Scaffold(
+    body: Center(
+      child: SpinKitCubeGrid(
+        size: 140,
+        color: Colors.white,
+      ),
+    ),
+  )
+    : Scaffold(
+       backgroundColor: Colors.white10,
         appBar: AppBar(
           titleSpacing: 00.0,
           centerTitle: true,
@@ -108,10 +121,15 @@ class _TrainDataState extends State<TrainData> {
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: Colors.white, fontSize: 20),
                               ),
-                              Text(
-                                listResponse[index]['train_name'].toString(),
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(color: Colors.white, fontSize: 20),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    listResponse[index]['train_name'].toString(),
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -150,7 +168,7 @@ class _TrainDataState extends State<TrainData> {
         ),
       )
     );
-  }
+
 }
 
 
