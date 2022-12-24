@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sutt_task_2/main_screen.dart';
+import 'auth_service.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -17,10 +18,9 @@ class Login extends StatelessWidget {
           child: const Text('Google Signin'),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MainScreen(),
-                ));
+              context,
+              MaterialPageRoute(builder: (context) => MainScreen(),
+              ));
           },
         ),
       ),
@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
   }
 }
 
-
+// AuthService().signInWithGoogle();
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 

@@ -22,6 +22,16 @@ List listResponse1 = [];
 
 class _TrainDetailsState extends State<TrainDetails> {
 
+  // int chosenIndex=0;
+  // final List<Widget> children = [
+  //   TrainData(journeyStart: ,),
+  // ];
+  // void onItemTapped(int index) {
+  //   setState(() {
+  //     chosenIndex = index;
+  //   });
+  // }
+
   bool isLoading = false;
   Future<dynamic> apiCall2() async {
     isLoading = true;
@@ -31,7 +41,7 @@ class _TrainDetailsState extends State<TrainDetails> {
     http.Response response;
     Uri uri = Uri.https('irctc1.p.rapidapi.com','api/v1/getTrainSchedule',mapdat2);
     response = await http.get(uri, headers: {
-      "X-RapidAPI-Key": "fea99748bbmshf72995184f86bc5p1a1e2ejsn921c76484118",
+      "X-RapidAPI-Key": "5a915091a0msh6ee56cca99744d3p10be83jsn874e2aa33e1b",
       "X-RapidAPI-Host": "irctc1.p.rapidapi.com",});
     if (response.statusCode == 200) {
       setState(() {
@@ -204,6 +214,23 @@ class _TrainDetailsState extends State<TrainDetails> {
           color: Colors.white,
         ),
       ),
+    // bottomNavigationBar: BottomNavigationBar(
+    //   currentIndex: chosenIndex,
+    //   selectedItemColor: Colors.blue,
+    //   onTap: onItemTapped,
+    //   items: const <BottomNavigationBarItem>[
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.arrow_back_ios),
+    //       label: 'See Trains again',
+    //       backgroundColor: Colors.black,
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.arrow_back_ios),
+    //       label: 'Enter Station Again',
+    //       backgroundColor: Colors.black,
+    //     ),
+    //   ],
+    // ),
     );
 
 }

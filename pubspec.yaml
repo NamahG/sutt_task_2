@@ -39,6 +39,13 @@ dependencies:
   http: ^0.13.5
   flutter_spinkit: ^5.1.0
 
+  font_awesome_flutter: ^9.0.0
+
+  google_sign_in: ^5.0.3
+  firebase_auth: ^1.1.4
+
+  provider: ^5.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -90,3 +97,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+dependency_overrides:
+  firebase_core_platform_interface: 4.5.1

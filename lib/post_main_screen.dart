@@ -31,14 +31,14 @@ class _TrainDataState extends State<TrainData> {
     Uri uri = Uri.https('irctc1.p.rapidapi.com', '/api/v2/trainBetweenStations', mapdata);
     http.Response response;
     response = await http.get(uri, headers: {
-      "X-RapidAPI-Key": "fea99748bbmshf72995184f86bc5p1a1e2ejsn921c76484118",
+      "X-RapidAPI-Key": "5a915091a0msh6ee56cca99744d3p10be83jsn874e2aa33e1b",
       "X-RapidAPI-Host": "irctc1.p.rapidapi.com",});
     if (response.statusCode == 200) {
       setState(() {
         mapResponse = json.decode(response.body);
-        listResponse = mapResponse['data'];
+        listResponse = mapResponse['data'].toList();
         print(listResponse);
-        isLoading=false;
+        isLoading = false;
       });
     }
   }
@@ -171,28 +171,6 @@ class _TrainDataState extends State<TrainData> {
 
 }
 
-
-// Container(
-// child: Column(
-// children: [
-// Row(
-// children: [
-
-// ],
-// ),
-
-
-
-
-
-// IconButton(
-// icon: const Icon(Icons.delete, color: Colors.white, size: 40.0),
-// tooltip: 'Delete',
-// onPressed: () {
-// },
-// ),
-
-
 // listResponse == null? 0 :
 // class TrainDat {
 //   TrainDat({required this.journeyStart,required this.journeyEnd});
@@ -218,7 +196,3 @@ class _TrainDataState extends State<TrainData> {
 // }
 
 
-// Text(
-// 'Text',
-
-// ),
