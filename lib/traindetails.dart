@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:sutt_task_2/constants.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:sutt_task_2/main_screen.dart';
 
 
 class TrainDetails extends StatefulWidget {
@@ -19,12 +20,15 @@ class TrainDetails extends StatefulWidget {
 Map trainResponse = {};
 List listResponse1 = [];
 
+MainScreen journeyS = MainScreen();
+MainScreen journeyE = MainScreen();
+
 
 class _TrainDetailsState extends State<TrainDetails> {
 
   // int chosenIndex=0;
   // final List<Widget> children = [
-  //   TrainData(journeyStart: ,),
+  //   TrainData(journeyStart: journeyS.returnJourneyStart(), journeyEnd: journeyE.returnJourneyEnd(),),
   // ];
   // void onItemTapped(int index) {
   //   setState(() {
@@ -64,19 +68,20 @@ class _TrainDetailsState extends State<TrainDetails> {
   @override
   Widget build(BuildContext context) => isLoading
       ? Scaffold(
+    backgroundColor: Colors.purple,
          body: Center(
-           child: SpinKitCubeGrid(
+           child: SpinKitPouringHourGlass(
              size: 140,
-             color: Colors.white,
+             color: Colors.blue,
            ),
          ),
        )
      : Scaffold(
-        backgroundColor: Colors.white10,
+        backgroundColor: Colors.deepOrangeAccent,
         appBar: AppBar(
           titleSpacing: 00.0,
           centerTitle: true,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.orange,
           title: const Text(
             'Trains',
             textAlign: TextAlign.center,
@@ -84,6 +89,10 @@ class _TrainDetailsState extends State<TrainDetails> {
         ),
       body: ListView.builder(itemBuilder: (context, index){
         return Card(
+          color: Colors.orangeAccent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
           child: Column(
             children: [
               Row(
@@ -92,17 +101,17 @@ class _TrainDetailsState extends State<TrainDetails> {
                   Icon(
                     Icons.code,
                     size: 20,
-                    color: Colors.white,
+                    color: Colors.yellow,
                   ),
                   const Text(
                     "Station Code is: ",
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                   Text(
                     listResponse1[index]['station_code'].toString(),
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                 ],
               ),
@@ -111,12 +120,12 @@ class _TrainDetailsState extends State<TrainDetails> {
                   Icon(
                     Icons.dns,
                     size: 20,
-                    color: Colors.white,
+                    color: Colors.yellow,
                   ),
                   const Text(
                     "Station Name is: ",
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
@@ -124,7 +133,7 @@ class _TrainDetailsState extends State<TrainDetails> {
                       child: Text(
                         listResponse1[index]['station_name'].toString(),
                         textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle(color: Colors.yellow, fontSize: 20),
                       ),
                     ),
                   ),
@@ -135,18 +144,18 @@ class _TrainDetailsState extends State<TrainDetails> {
                   Icon(
                     Icons.calendar_today,
                     size: 20,
-                    color: Colors.white,
+                    color: Colors.yellow,
                   ),
                   const Text(
 
                     "Day it is passing through is: ",
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                   Text(
                     listResponse1[index]['day'].toString(),
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                 ],
               ),
@@ -155,17 +164,17 @@ class _TrainDetailsState extends State<TrainDetails> {
                   Icon(
                     Icons.social_distance,
                     size: 20,
-                    color: Colors.white,
+                    color: Colors.yellow,
                   ),
                   const Text(
                     "Distance from source is: ",
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                   Text(
                     listResponse1[index]['distance_from_source'].toString(),
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                 ],
               ),
@@ -174,27 +183,17 @@ class _TrainDetailsState extends State<TrainDetails> {
                   Icon(
                     Icons.verified,
                     size: 20,
-                    color: Colors.white,
+                    color: Colors.yellow,
                   ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: const Text(
-                        "Will train stop at the station:",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
+                  const Text(
+                    "Will train stop at the station:",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Text(
-                        listResponse1[index]['stop'].toString(),
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
+                  Text(
+                    listResponse1[index]['stop'].toString(),
+                    textAlign: TextAlign.left,
+                    style: TextStyle(color: Colors.yellow, fontSize: 20),
                   ),
                 ],
               ),
@@ -208,10 +207,10 @@ class _TrainDetailsState extends State<TrainDetails> {
         onPressed: () {
           Navigator.pop(context);
         },
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.redAccent,
         child: const Icon(
           Icons.arrow_back_ios,
-          color: Colors.white,
+          color: Colors.yellowAccent,
         ),
       ),
     // bottomNavigationBar: BottomNavigationBar(

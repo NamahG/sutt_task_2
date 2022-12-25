@@ -3,19 +3,18 @@ import 'package:sutt_task_2/post_main_screen.dart';
 import 'constants.dart';
 
 class MainScreen extends StatefulWidget {
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+
   String journeyStart = '';
   String journeyEnd = '';
   TextEditingController journeyStartTEC = TextEditingController();
   TextEditingController journeyEndTEC = TextEditingController();
 
-  // String returnJourneyStart {
-  //   return journeyStart;
-  // };
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +89,15 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
+  String returnJourneyStart() {
+    return journeyStart;
+  }
+
+  String returnJourneyEnd() {
+    return journeyEnd;
+  }
+
 }
 
 
