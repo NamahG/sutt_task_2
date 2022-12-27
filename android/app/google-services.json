@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770688689090",
+    "project_id": "sutt-task-2-ff65f",
+    "storage_bucket": "sutt-task-2-ff65f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770688689090:android:304b1c955058870112ac5b",
+        "android_client_info": {
+          "package_name": "com.example.sutt_task_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770688689090-607h2rbap4p6p7nq5h5t9r0tqarc34gc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKvg-a9m8Ly3Qt-F7Tp6YL-acWk_cXFzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770688689090-607h2rbap4p6p7nq5h5t9r0tqarc34gc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
